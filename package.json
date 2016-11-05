@@ -1,0 +1,22 @@
+{
+  "name": "cbot",
+  "version": "1.0.0",
+  "description": "Collaboration Based Online Teaching Tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clarencenpy/cbot.git"
+  },
+  "author": "clarencenpy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clarencenpy/cbot/issues"
+  },
+  "homepage": "https://github.com/clarencenpy/cbot#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
