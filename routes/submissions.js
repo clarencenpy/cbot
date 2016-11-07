@@ -10,7 +10,7 @@ const getSubmission = (req, res) => {
 }
 
 const getAllSubmissions = (req, res) => {
-  res.send(s.getAllSubmissions())
+  res.render('submissionsTable', {submissions: s.getAllSubmissions()})
 }
 
 const putSubmission = (req, res) => {

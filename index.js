@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const submissionRouteInit = require('./routes/submissions.js')
 
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs')
 app.use(bodyParser.text())
 
 submissionRouteInit(app)

@@ -1,6 +1,6 @@
 const updateCollection = () => {
-  $.getJSON('/submissions', (data) => {
-    $('#collection').text('Submissions: ' + JSON.stringify(data, null, 2))
+  $.get('/submissions', (data) => {
+    $('#collection').html(data)
   })
 }
 
@@ -61,5 +61,9 @@ $(() => {
         updateCollection()
       }
     })
+  })
+
+  $('#retrieveAllBtn').on('click', () => {
+    updateCollection()
   })
 })
