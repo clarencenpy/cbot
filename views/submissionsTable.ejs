@@ -3,12 +3,14 @@
         <td>UserId</td>
         <td>TaskId</td>
         <td>Code</td>
+        <td>Passed</td>
     </tr>
     <% for (let s of submissions) { %>
     <tr>
         <td><%= s.userId %></td>
         <td><%= s.taskId %></td>
         <td><%= s.code %></td>
+        <td><%= s.passed %></td>
     </tr>
     <% } %>
 </table>

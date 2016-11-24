@@ -24,14 +24,17 @@ const putSubmission = (req, res) => {
     code: req.body,
     passed: false
   }).save(err => {
-    if (err) throw err
-    res.send({
-      status: 'success', data: {
-        userId: req.params.userId,
-        taskId: req.params.taskId,
-        code: req.body
-      }
-    })
+    if (err && err.code === 11000) {
+      res.send({status: 'failed: submission already exists'})
+    } else {
+      res.send({
+        status: 'success', data: {
+          userId: req.params.userId,
+          taskId: req.params.taskId,
+          code: req.body
+        }
+      })
+    }
   })
 }
 
