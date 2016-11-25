@@ -11,10 +11,10 @@ const app = express()
 const mongoose = require('mongoose')
 let connectionString = 'mongodb://localhost:27017/cbot'
 if (process.env.MLAB_PASSWORD && process.env.MLAB_USERNAME) {  //deployed
-  connectionString = `mongodb://${process.env.MLAB_USERNAME}:${process.env.MLAB_USERNAME}@ds159507.mlab.com:59507/cbot`
+  connectionString = `mongodb://${process.env.MLAB_USERNAME}:${process.env.MLAB_PASSWORD}@ds159507.mlab.com:59507/cbot`
 }
-
 mongoose.connect(connectionString)
+// ===========================================================================
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
@@ -35,7 +35,8 @@ app.use(express.static(__dirname + '/public'))
 
 const httpServer = require('http').createServer(app)
 
-httpServer.listen(50000, () => {
-  console.log("Server listening at http://localhost:50000/")
-  fs.writeFileSync(__dirname + '/start.log', 'started') //this file is watched to trigger refresh
+httpServer.listen(3000, () => {
+  console.log("Server listening at http://localhost:3000/")
+  if (process.env.NODE_ENV === 'development')
+    fs.writeFileSync(__dirname + '/start.log', 'started') //this file is watched to trigger refresh
 })
