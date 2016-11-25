@@ -19,7 +19,7 @@ mongoose.connect(connectionString)
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
 app.use(morgan('tiny'))
-app.use(bodyParser.text())
+app.use(bodyParser.json())
 
 // Load all routes in the routes directory// Load all routes in the routes directory
 fs.readdirSync('./routes').forEach(function (file) {
