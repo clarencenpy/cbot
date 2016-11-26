@@ -31,7 +31,8 @@ const init = (app) => {
             email: profile.emails[0].value,
             firstName: profile.name.givenName,
             lastName: profile.name.familyName,
-            displayPhoto: profile.photos[0].value
+            displayPhoto: profile.photos[0].value,
+            role: 'Student'
           })
           newUser.save(err => {
             if (err) throw err

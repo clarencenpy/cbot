@@ -1,7 +1,8 @@
 <div class="ui large top attached inverted menu">
     <div class="active item">
         <img class="ui image avatar" src="<%= user.displayPhoto %>">
-        <strong><%= `${user.firstName} ${user.lastName}` %></strong>
+        <strong>&nbsp;&nbsp;&nbsp;<%= `${user.firstName} ${user.lastName}` %></strong>
+        <span>&nbsp;&nbsp;<%= '(' + user.role + ')' %></span>
     </div>
     <div class="right menu">
         <a class="item" href="/logout">Logout</a>
