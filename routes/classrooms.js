@@ -27,7 +27,7 @@ const getAllClassroomsByUser = (req, res) => {
 
 const putClassroom = (req, res) => {
   Classroom(Object.assign({}, req.body, {
-    createdBy: req.user.id
+    createdBy: process.env.NODE_ENV === 'development' ? 'ADMIN' : req.user.id
   })).save(err => {
     if (err) throw err
     res.status(201).send()
@@ -65,9 +65,9 @@ const init = (app) => {
   app.get('/classroom/:_id', AuthMiddleware.isLoggedIn, getClassroom)
   app.get('/classrooms', AuthMiddleware.isLoggedIn, getAllClassrooms)
   app.get('/classrooms/:createdBy', AuthMiddleware.isLoggedIn, getAllClassroomsByUser)
-  app.put('/classroom/:userId/:taskId', AuthMiddleware.isInstructor, putClassroom)
-  app.post('/classroom/:userId/:taskId', AuthMiddleware.isInstructor, postClassroom)
-  app.delete('/classroom/:userId/:taskId', AuthMiddleware.isInstructor, deleteClassroom)
+  app.put('/classroom', AuthMiddleware.isInstructor, putClassroom)
+  app.post('/classroom/:_id', AuthMiddleware.isInstructor, postClassroom)
+  app.delete('/classroom/:_id', AuthMiddleware.isInstructor, deleteClassroom)
 }
 
 module.exports = {init}

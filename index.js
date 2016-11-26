@@ -34,9 +34,12 @@ fs.readdirSync('./routes').forEach(function (file) {
   }
 })
 
+const Classroom = require('./models/classroom.js')
 app.get('/', (req, res) => {
   if (!req.user) return res.redirect('/auth')
-  res.render('main', {user: req.user})
+  Classroom.find({}, (err, classrooms) => {
+    res.render('main', {user: req.user, classrooms})
+  })
 })
 
 // Handle static files
