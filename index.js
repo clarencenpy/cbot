@@ -3,6 +3,8 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const express = require('express')
 const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 
 const app = express()
 
@@ -20,6 +22,8 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
 app.use(morgan('tiny'))
 app.use(bodyParser.json())
+app.use(cookieParser())
+app.use(session({secret: 'dingdong'}))
 
 // Load all routes in the routes directory// Load all routes in the routes directory
 fs.readdirSync('./routes').forEach(function (file) {
@@ -28,6 +32,11 @@ fs.readdirSync('./routes').forEach(function (file) {
     console.log("Adding routes in " + file)
     require('./routes/' + file).init(app)
   }
+})
+
+app.get('/', (req, res) => {
+  if (!req.user) return res.redirect('/auth')
+  res.render('main', {user: req.user})
 })
 
 // Handle static files

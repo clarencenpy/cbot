@@ -43,11 +43,15 @@ const init = (app) => {
     })
   }))
 
-  app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}))
+  app.get('/auth', passport.authenticate('facebook', {scope: 'email'}))
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     successRedirect: '/',
-    failureRedirect: '/'
+    failureRedirect: '/authFailed'
   }))
+  app.get('/logout', (req, res) => {
+    req.logout()
+    res.send('Logged Out')
+  })
 
 // used to serialize the user for the session
   passport.serializeUser(function (user, done) {
@@ -56,7 +60,7 @@ const init = (app) => {
 
 // used to deserialize the user
   passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
+    User.findOne({id}, function (err, user) {
       done(err, user)
     })
   })
