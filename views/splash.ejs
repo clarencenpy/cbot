@@ -7,13 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="lib/semantic/semantic-ui.min.css">
     <link rel="stylesheet" href="app.css">
-    <title>CBOT - <%= user.role %></title>
+    <title>CBOT - Welcome</title>
 </head>
 <body>
-<%- include('partials/header') %>
+
+<div class="ui large red top attached borderless inverted menu">
+    <div class="item active">
+        <img class="ui image avatar" src="assets/cbot-avatar.png">
+        <strong>Welcome to CBOT</strong>
+    </div>
+    <div class="right menu">
+        <a class="item" href="/auth">Login</a>
+    </div>
+</div>
 
 <div class="container">
-    <%- include('partials/allClassrooms') %>
+
 </div>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

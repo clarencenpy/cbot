@@ -46,12 +46,12 @@ const init = (app) => {
 
   app.get('/auth', passport.authenticate('facebook', {scope: 'email'}))
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: '/',
-    failureRedirect: '/authFailed'
+    successRedirect: '/main',
+    failureRedirect: '/'
   }))
   app.get('/logout', (req, res) => {
     req.logout()
-    res.send('Logged Out')
+    res.redirect('/')
   })
 
 // used to serialize the user for the session
