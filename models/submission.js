@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const submissionSchema = new mongoose.Schema({
-  userId: String,
+  classroomId: {type: mongoose.Schema.Types.ObjectId, ref: 'Classroom'},
+  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   taskId: String,
   fiddleUrl: String,
   passed: Boolean,
