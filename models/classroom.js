@@ -4,7 +4,10 @@ const classroomSchema = new mongoose.Schema({
   name: String,
   password: String,
   students: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-  tasks: [Object],
+  tasks: [{
+    title: String,
+    description: String
+  }],
   classEnded: Boolean
 })
 
