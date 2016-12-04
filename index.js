@@ -20,7 +20,7 @@ mongoose.connect(connectionString)
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
-app.use(morgan('tiny'))
+// app.use(morgan('tiny'))
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(session({secret: 'dingdong'}))
@@ -36,10 +36,20 @@ fs.readdirSync('./routes').forEach(function (file) {
 
 const Classroom = require('./models/classroom.js')
 app.get('/main', (req, res) => {
-  if (!req.user) return res.redirect('/')
-  Classroom.find({}, (err, classrooms) => {
-    res.render('main', {user: req.user, classrooms})
-  })
+  //redirect to the correct page based on role
+  if (!req.user) res.redirect('/')
+
+  if (req.user.role === 'Student') {
+
+  } else if (req.user.role === 'Instructor') {
+    Classroom.find({})
+    .populate('students', 'firstName lastName displayPhoto')
+    .exec((err, classrooms) => {
+      res.render('instructor', {user: req.user, classrooms})
+    })
+  } else {
+    res.redirect('/')
+  }
 })
 
 app.get('/', (req, res) => {

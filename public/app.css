@@ -82,8 +82,19 @@ body {
   padding: 20px;
 }
 
+.main-container #classrooms {
+  position: relative;
+}
+
 .main-container #classrooms.segment {
   border-top: 4px solid #c50000;
+}
+
+.main-container #classrooms #btn-createClassroom {
+  position: absolute;
+  display: inline;
+  top: 20px;
+  right: 20px;
 }
 
 /*# sourceMappingURL=app.css.map */

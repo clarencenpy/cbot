@@ -1,8 +1,12 @@
 <div id="classrooms" class="ui padded segment">
-    <h2 class="ui right aligned header">
+    <h2 class="ui header">
         <i class="graduation icon"></i>
         <div class="content">Active Classrooms</div>
     </h2>
+    <div id="btn-createClassroom" class="ui red labeled icon button">
+        <i class="plus icon"></i>
+        Create New Classroom
+    </div>
     <div class="ui link cards">
         <% classrooms.forEach(classroom => { %>
         <%- include('classroomCard', {classroom}) %>

@@ -8,7 +8,7 @@ const classroomSchema = new mongoose.Schema({
     title: String,
     description: String
   }],
-  classEnded: Boolean
+  // classEnded: Boolean
 })
 
 module.exports = mongoose.model('Classroom', classroomSchema)

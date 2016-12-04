@@ -82,8 +82,20 @@ body {
 .main-container {
   padding: 20px;
 
-  #classrooms.segment {
-    border-top: 4px solid #c50000;
+  #classrooms {
+    position: relative;
+
+    &.segment {
+      border-top: 4px solid #c50000;
+    }
+
+    #btn-createClassroom {
+      position: absolute;
+      display: inline;
+      top: 20px;
+      right: 20px;
+    }
+
   }
 
 }
