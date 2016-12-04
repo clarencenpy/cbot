@@ -1,5 +1,12 @@
-<div class="ui link cards">
-    <% classrooms.forEach(classroom => { %>
-    <%- include('classroomCard', {classroom}) %>
-    <% }) %>
+<div id="classrooms" class="ui padded segment">
+    <h2 class="ui right aligned header">
+        <i class="graduation icon"></i>
+        <div class="content">Active Classrooms</div>
+    </h2>
+    <div class="ui link cards">
+        <% classrooms.forEach(classroom => { %>
+        <%- include('classroomCard', {classroom}) %>
+        <% }) %>
+    </div>
 </div>
+

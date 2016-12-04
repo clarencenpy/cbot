@@ -1,10 +1,10 @@
-<div class="ui large red top attached borderless inverted menu">
+<div class="ui massive red top attached borderless inverted menu">
     <div class="item active">
         <img class="ui image avatar" src="<%= user.displayPhoto %>">
         <strong>&nbsp;&nbsp;&nbsp;<%= `${user.firstName} ${user.lastName}` %></strong>
         <span>&nbsp;&nbsp;<%= '(' + user.role + ')' %></span>
     </div>
     <div class="right menu">
-        <a class="item" href="/logout">Logout</a>
+        <a class="item" href="/logout"><i class="sign out icon"></i>Logout</a>
     </div>
 </div>

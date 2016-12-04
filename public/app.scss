@@ -1,3 +1,8 @@
+body {
+  /*background-color: #2b2b2b;*/
+  background-color: whitesmoke;
+}
+
 /*Splash Page*/
 .splash-container {
   background-color: #fa4f4e;
@@ -74,8 +79,11 @@
 }
 
 /*Main Page*/
-.container {
+.main-container {
   padding: 20px;
-  /*background-color: #2b2b2b;*/
-  background-color: whitesmoke;
+
+  #classrooms.segment {
+    border-top: 4px solid #c50000;
+  }
+
 }

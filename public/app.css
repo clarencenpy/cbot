@@ -1,3 +1,8 @@
+body {
+  /*background-color: #2b2b2b;*/
+  background-color: whitesmoke;
+}
+
 /*Splash Page*/
 .splash-container {
   background-color: #fa4f4e;
@@ -39,7 +44,6 @@
   -moz-animation: blink 0.7s infinite;
   animation: blink 0.7s infinite;
 }
-
 @keyframes blink {
   0% {
     opacity: 1;
@@ -51,7 +55,6 @@
     opacity: 1;
   }
 }
-
 @-webkit-keyframes blink {
   0% {
     opacity: 1;
@@ -63,7 +66,6 @@
     opacity: 1;
   }
 }
-
 @-moz-keyframes blink {
   0% {
     opacity: 1;
@@ -75,12 +77,13 @@
     opacity: 1;
   }
 }
-
 /*Main Page*/
-.container {
+.main-container {
   padding: 20px;
-  /*background-color: #2b2b2b;*/
-  background-color: whitesmoke;
+}
+
+.main-container #classrooms.segment {
+  border-top: 4px solid #c50000;
 }
 
 /*# sourceMappingURL=app.css.map */

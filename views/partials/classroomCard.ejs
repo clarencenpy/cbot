@@ -1,6 +1,11 @@
 <div class="card">
     <div class="content">
-        <i class="right floated lock icon"></i>
+        <span class="right floated"
+              data-tooltip="Requires Password"
+              data-position="top left"
+              data-inverted="">
+            <i class="lock icon"></i>
+        </span>
         <div class="header"><%= classroom.name %></div>
         <div class="meta">
             <span> <%= classroom.tasks.length %> tasks </span>
