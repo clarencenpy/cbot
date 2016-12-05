@@ -12,7 +12,8 @@
         </div>
     </div>
     <div class="extra content">
-        <div class="ui teal small progress" data-value=0 data-total=<%= classroom.expectedAttendance %>>
+        <div class="ui teal small progress"
+             data-value=<%= classroom.students.length %> data-total=<%= classroom.expectedAttendance %>>
             <div class="bar"></div>
             <div class="label"></div>
         </div>
