@@ -2,8 +2,6 @@ const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
 
 const init = (app) => {
-  app.use(passport.initialize())
-  app.use(passport.session())
 
   const User = require('../models/user.js')
   passport.use(new FacebookStrategy({

@@ -5,6 +5,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const passport = require('passport')
 
 const app = express()
 
@@ -20,12 +21,16 @@ mongoose.connect(connectionString)
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
-// app.use(morgan('tiny'))
-app.use(bodyParser.json())
-app.use(cookieParser())
-app.use(session({secret: 'dingdong'}))
 
-// Load all routes in the routes directory// Load all routes in the routes directory
+// Middleware Setup
+// app.use(morgan('tiny'))
+app.use(cookieParser())
+app.use(bodyParser.json())
+app.use(session({secret: 'dingdong'}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+// Load all routes in the routes directory
 fs.readdirSync('./routes').forEach(function (file) {
   // There might be non-js files in the directory that should not be loaded
   if (path.extname(file) === '.js') {
@@ -42,9 +47,7 @@ app.get('/main', (req, res) => {
   if (req.user.role === 'Student') {
 
   } else if (req.user.role === 'Instructor') {
-    Classroom.find({})
-    .populate('students', 'firstName lastName displayPhoto')
-    .exec((err, classrooms) => {
+    Classroom.find({}, (err, classrooms) => {
       res.render('instructor', {user: req.user, classrooms})
     })
   } else {
