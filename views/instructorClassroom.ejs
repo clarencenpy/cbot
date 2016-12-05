@@ -13,13 +13,12 @@
 <%- include('partials/header') %>
 
 <div class="main-container">
-    <%- include('partials/allClassrooms') %>
-    <%- include('partials/createClassroomModal') %>
+    <%= JSON.stringify(classroom, null, 2) %>
 </div>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
 <script src="/lib/semantic/semantic-ui.min.js"></script>
-<script src="instructor.js"></script>
+<script src="/instructorClassroom.js"></script>
 </body>
 </html>
