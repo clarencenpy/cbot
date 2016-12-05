@@ -18,6 +18,7 @@ const App = {
   },
 
   bindEvents() {
+
     $('#btn-createClassroom').on('click', () => {
       let $modal = $('#modal-createClassroom')
       $modal.modal({
@@ -37,11 +38,23 @@ const App = {
               students: []
             }),
             success: (classroomHtml) => {
-              $('#classroomList').append(classroomHtml)
+              let $classroomCard = $(classroomHtml)
+              $('#classroomList').append($classroomCard)
+              $classroomCard.find('.progress').progress({
+                text: {
+                  active: '{value} of {total} students joined',
+                  success: 'Class is full!'
+                }
+              }).progress('update progress')
             }
           })
         }
       }).modal('show')
+    })
+
+    $('.classroomCard').on('click', (e) => {
+      let id = $(e.target).closest('.classroomCard').data('id')
+      window.location.href = `/instructor/classroom/${id}`
     })
   },
 
