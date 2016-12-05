@@ -28,9 +28,9 @@ const getAllClassroomsByUser = (req, res) => {
 const putClassroom = (req, res) => {
   Classroom(Object.assign({}, req.body, {
     createdBy: process.env.NODE_ENV === 'development' ? 'ADMIN' : req.user.id
-  })).save(err => {
+  })).save((err, doc) => {
     if (err) throw err
-    res.status(201).send()
+    res.status(201).render('partials/classroomCard', {classroom: doc})
   })
 }
 

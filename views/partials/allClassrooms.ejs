@@ -7,7 +7,7 @@
         <i class="plus icon"></i>
         Create New Classroom
     </div>
-    <div class="ui link cards">
+    <div id="classroomList" class="ui link cards">
         <% classrooms.forEach(classroom => { %>
         <%- include('classroomCard', {classroom}) %>
         <% }) %>

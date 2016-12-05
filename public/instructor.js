@@ -5,7 +5,16 @@ const App = {
   },
 
   initComponents() {
+    $('.progress').progress({
+      text: {
+        active: '{value} of {total} students joined',
+        success: 'Class is full!'
+      }
+    }).progress('update progress')
+  },
 
+  refresh() {
+    $('.progress').progress('update progress')
   },
 
   bindEvents() {
@@ -15,6 +24,7 @@ const App = {
         onApprove: () => {
           let name = $modal.find('input[name="name"]').val()
           let password = $modal.find('input[name="password"]').val()
+          let expectedAttendance = Number($modal.find('input[name="expectedAttendance"]').val())
           $.ajax({
             method: 'PUT',
             contentType: 'application/json',
@@ -22,14 +32,19 @@ const App = {
             data: JSON.stringify({
               name,
               password,
+              expectedAttendance,
               tasks: [],
               students: []
-            })
+            }),
+            success: (classroomHtml) => {
+              $('#classroomList').append(classroomHtml)
+            }
           })
         }
       }).modal('show')
     })
-  }
+  },
+
 }
 
 $(() => {
