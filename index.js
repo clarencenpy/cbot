@@ -65,6 +65,17 @@ app.get('/', (req, res) => {
 app.use(express.static(__dirname + '/public'))
 
 const httpServer = require('http').createServer(app)
+const io = require('socket.io')(httpServer)
+
+// Socket io events
+io.on('connection', socket => {
+  console.log('connected to default!')
+})
+const special = io.of('special')
+special.on('connection', () => {
+  console.log('connected to special')
+})
+
 
 httpServer.listen(3000, () => {
   console.log("Server listening at http://localhost:3000/")
