@@ -45,10 +45,12 @@ app.get('/main', (req, res) => {
   if (!req.user) res.redirect('/')
 
   if (req.user.role === 'Student') {
-
+    Classroom.find({}, (err, classrooms) => {
+      res.render('studentHome', {user: req.user, classrooms})
+    })
   } else if (req.user.role === 'Instructor') {
     Classroom.find({}, (err, classrooms) => {
-      res.render('instructor', {user: req.user, classrooms})
+      res.render('instructorHome', {user: req.user, classrooms})
     })
   } else {
     res.redirect('/')

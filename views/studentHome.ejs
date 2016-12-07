@@ -13,15 +13,13 @@
 <%- include('partials/header') %>
 
 <div class="main-container">
-    <div id="classroom-banner" class="ui inverted segment">
-        <i id="btn-back" class="arrow circle left icon inverted"></i>
-        <h3> <%= classroom.name %></h3>
-    </div>
+    <%- include('partials/allClassrooms') %>
+    <%- include('partials/createClassroomModal') %>
 </div>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
 <script src="/lib/semantic/semantic-ui.min.js"></script>
-<script src="/instructorClassroom.js"></script>
+<script src="instructor.js"></script>
 </body>
 </html>

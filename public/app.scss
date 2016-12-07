@@ -95,7 +95,28 @@ body {
       top: 20px;
       right: 20px;
     }
+  }
 
+  #classroom-banner {
+    position: relative;
+    max-width: 400px;
+
+    #btn-back {
+      font-size: 25px;
+      line-height: 50px;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      transition: transform 0.1s;
+      &:hover {
+        transform: scale(1.1)
+      }
+    }
+
+    h3 {
+      display: inline;
+      margin-left: 45px;
+    }
   }
 
 }

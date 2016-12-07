@@ -97,4 +97,27 @@ body {
   right: 20px;
 }
 
+.main-container #classroom-banner {
+  position: relative;
+  max-width: 400px;
+}
+
+.main-container #classroom-banner #btn-back {
+  font-size: 25px;
+  line-height: 50px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  transition: transform 0.1s;
+}
+
+.main-container #classroom-banner #btn-back:hover {
+  transform: scale(1.1);
+}
+
+.main-container #classroom-banner h3 {
+  display: inline;
+  margin-left: 45px;
+}
+
 /*# sourceMappingURL=app.css.map */
