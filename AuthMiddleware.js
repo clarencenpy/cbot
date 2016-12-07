@@ -1,27 +1,24 @@
 const isLoggedIn = (req, res, next) => {
-  if (process.env.NODE_ENV === 'development') return next()
   if (req.user) {
     next()
   } else {
-    res.status(401).send()
+    res.redirect('/')
   }
 }
 
 const isStudent = (req, res, next) => {
-  if (process.env.NODE_ENV === 'development') return next()
-  if (req.user && req.user.role === 'student') {
+  if (req.user && req.user.role === 'Student') {
     next()
   } else {
-    res.status(401).send()
+    res.redirect('/')
   }
 }
 
 const isInstructor = (req, res, next) => {
-  if (process.env.NODE_ENV === 'development') return next()
-  if (req.user && req.user.role === 'instructor') {
+  if (req.user && req.user.role === 'Instructor') {
     next()
   } else {
-    res.status(401).send()
+    res.redirect('/')
   }
 }
 
