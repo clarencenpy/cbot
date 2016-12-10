@@ -1,4 +1,5 @@
 const Classroom = require('../models/classroom.js')
+const Submission = require('../models/submission.js')
 const AuthMiddleware = require('../AuthMiddleware.js')
 const ObjectId = require('mongoose').Types.ObjectId
 
@@ -81,14 +82,14 @@ const addTask = (req, res) => {
 }
 
 const calculateProgressReport = async((req, res) => {
-  let classroom = await(Classroom.findOneById(req.params._id))
+  let classroom = await(Classroom.findById(req.params._id))
 
   let taskReport = {}
   let studentReport = {}
 
   for (let task of classroom.tasks) {
     let taskProgress = []
-    let submissions = await(Submissions.find({taskId: task._id}))
+    let submissions = await(Submission.find({taskId: task._id}))
     for (let s of submissions) {
       taskProgress.push(s.userId)
     }
@@ -97,7 +98,7 @@ const calculateProgressReport = async((req, res) => {
 
   for (let studentId of classroom.students) {
     let studentProgress = []
-    let submissions = await(Submissions.find({userId: studentId}))
+    let submissions = await(Submission.find({userId: studentId}))
     for (let s of submissions) {
       studentProgress.push(s.taskId)
     }

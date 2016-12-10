@@ -7,17 +7,29 @@ const App = {
 
   initComponents() {
     $('.ui.accordion').accordion();
+    $('.studentCard .image').dimmer({on: 'hover'})
     this.updateProgress()
   },
 
   updateProgress() {
-    $.getJSON(`classroom/${this.classroomId}/progress`, (report) => {
+    $.getJSON(`/classroom/${this.classroomId}/progress`, (report) => {
       console.log(report)
-      //update all progress bars
-      $('.task-content').each((i, elem) => {
+      //update all progress bars on tasks
+      $('.taskCard').each((i, elem) => {
         const $elem = $(elem)
         let taskId = $elem.data('taskid')
-        $elem.find('.progress').progress('set total', report.totalStudents).progress('set progress', report.taskReport[taskId].length)
+        $elem.find('.progress')
+        .progress('set total', report.totalStudents)
+        .progress('set progress', report.taskReport[taskId].length)
+      })
+
+      //update all progress bars on students
+      $('.studentCard').each((i, elem) => {
+        const $elem = $(elem)
+        let studentId = $elem.data('studentid')
+        $elem.find('.progress')
+        .progress('set total', report.totalTasks)
+        .progress('set progress', report.studentReport[studentId].length)
       })
     })
   },

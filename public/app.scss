@@ -105,7 +105,7 @@ body {
       right: 20px;
     }
 
-    .task-content {
+    .taskCard {
       position: relative;
 
       .progress {
@@ -122,7 +122,12 @@ body {
         top: 7px;
       }
     }
+  }
 
+  #students {
+    .progress {
+      margin: 0;
+    }
   }
 
   #classroom-banner {

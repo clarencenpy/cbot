@@ -1,0 +1,14 @@
+<div id="students" class="ui padded segment">
+    <h2 class="ui header">
+        <i class="users icon"></i>
+        <div class="content">Class Roster</div>
+    </h2>
+    <hr>
+    <br>
+    <div id="studentList" class="ui four link cards">
+        <% students.forEach(student => { %>
+        <%- include('studentCard', {student}) %>
+        <% }) %>
+    </div>
+</div>
+
