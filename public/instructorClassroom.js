@@ -35,6 +35,9 @@ const App = {
   },
 
   bindEvents() {
+    $('#btn-back').on('click', () => {
+      location.href = '/main'
+    })
     $('#btn-createTask').on('click', () => {
       let $modal = $('#modal-createTask')
       $modal.modal({
