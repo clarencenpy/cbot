@@ -1,9 +1,12 @@
-<div>
+<div class="task-content" data-taskid="<%= task._id %>">
     <div class="title">
         <i class="dropdown icon"></i>
         <%= task.name %>
+        <div class="ui yellow label points">
+            <i class="star icon"></i> <%= task.points %>
+        </div>
     </div>
     <div class="content">
-        <p class="transition hidden"><%= task.description %></p>
+        <p class="description transition hidden"><%= task.description %></p>
     </div>
 </div>

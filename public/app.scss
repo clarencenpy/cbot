@@ -104,6 +104,20 @@ body {
       top: 20px;
       right: 20px;
     }
+
+    .task-content {
+      position: relative;
+      .description {
+        white-space: pre-wrap;
+      }
+
+      .points {
+        position: absolute;
+        right: 10px;
+        top: 7px;
+      }
+    }
+
   }
 
   #classroom-banner {

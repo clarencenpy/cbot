@@ -104,6 +104,20 @@ body {
   right: 20px;
 }
 
+.main-container #tasks .task-content {
+  position: relative;
+}
+
+.main-container #tasks .task-content .description {
+  white-space: pre-wrap;
+}
+
+.main-container #tasks .task-content .points {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+}
+
 .main-container #classroom-banner {
   position: relative;
   max-width: 400px;
