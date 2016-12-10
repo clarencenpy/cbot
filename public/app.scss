@@ -97,6 +97,15 @@ body {
     }
   }
 
+  #tasks {
+    #btn-createTask {
+      position: absolute;
+      display: inline;
+      top: 20px;
+      right: 20px;
+    }
+  }
+
   #classroom-banner {
     position: relative;
     max-width: 400px;

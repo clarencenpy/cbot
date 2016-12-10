@@ -6,8 +6,9 @@ const classroomSchema = new mongoose.Schema({
   students: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   expectedAttendance: Number,
   tasks: [{
-    title: String,
-    description: String
+    name: String,
+    description: String,
+    points: Number
   }],
   // classEnded: Boolean
 })

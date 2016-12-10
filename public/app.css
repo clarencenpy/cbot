@@ -97,6 +97,13 @@ body {
   right: 20px;
 }
 
+.main-container #tasks #btn-createTask {
+  position: absolute;
+  display: inline;
+  top: 20px;
+  right: 20px;
+}
+
 .main-container #classroom-banner {
   position: relative;
   max-width: 400px;

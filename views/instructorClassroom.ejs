@@ -7,15 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/lib/semantic/semantic-ui.min.css">
     <link rel="stylesheet" href="/app.css">
-    <title>CBOT - <%= user.role %></title>
+    <title>CBOT - <%= user ? user.role : 'Not logged In' %></title>
 </head>
-<body>
+<body data-classroomid="<%= classroom._id %>">
 <%- include('partials/header') %>
 
 <div class="main-container">
     <div id="classroom-banner" class="ui inverted segment">
         <i id="btn-back" class="arrow circle left icon inverted"></i>
         <h3> <%= classroom.name %></h3>
+    </div>
+
+    <%- include('partials/createTaskModal') %>
+
+    <div class="ui grid">
+        <div class="column eight wide">
+            <%- include('partials/allTasks', {tasks: classroom.tasks}) %>
+        </div>
     </div>
 </div>
 
