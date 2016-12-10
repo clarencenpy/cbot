@@ -2,6 +2,9 @@ const Classroom = require('../models/classroom.js')
 const AuthMiddleware = require('../AuthMiddleware.js')
 const ObjectId = require('mongoose').Types.ObjectId
 
+const async = require('asyncawait').async
+const await = require('asyncawait').await
+
 const getClassroom = (req, res) => {
   Classroom.findOneById(req.params._id, (err, classroom) => {
     if (classroom) {
@@ -65,7 +68,7 @@ const deleteClassroom = (req, res) => {
 const addTask = (req, res) => {
   let task = req.body
   task._id = ObjectId()
-  Classroom.findOneAndUpdate(req.params.classroomId, {
+  Classroom.findOneAndUpdate(req.params._id, {
     $push: {tasks: task}
   }, (err, doc) => {
     if (err) throw err
@@ -77,6 +80,39 @@ const addTask = (req, res) => {
   })
 }
 
+const calculateProgressReport = async((req, res) => {
+  let classroom = await(Classroom.findOneById(req.params._id))
+
+  let taskReport = {}
+  let studentReport = {}
+
+  for (let task of classroom.tasks) {
+    let taskProgress = []
+    let submissions = await(Submissions.find({taskId: task._id}))
+    for (let s of submissions) {
+      taskProgress.push(s.userId)
+    }
+    taskReport[task._id] = taskProgress //list of users that completed it
+  }
+
+  for (let studentId of classroom.students) {
+    let studentProgress = []
+    let submissions = await(Submissions.find({userId: studentId}))
+    for (let s of submissions) {
+      studentProgress.push(s.taskId)
+    }
+    studentReport[studentId] = studentProgress
+  }
+
+  res.send({
+    taskReport,
+    studentReport,
+    totalStudents: classroom.students.length,
+    totalTasks: classroom.tasks.length
+  })
+
+})
+
 const init = (app) => {
   app.get('/classroom/:_id', AuthMiddleware.isLoggedIn, getClassroom)
   app.get('/classrooms', AuthMiddleware.isLoggedIn, getAllClassrooms)
@@ -85,7 +121,8 @@ const init = (app) => {
   app.post('/classroom/:_id', AuthMiddleware.isInstructor, postClassroom)
   app.delete('/classroom/:_id', AuthMiddleware.isInstructor, deleteClassroom)
 
-  app.put('/classroom/:classroomId/task', AuthMiddleware.isInstructor, addTask)
+  app.put('/classroom/:_id/task', AuthMiddleware.isInstructor, addTask)
+  app.get('/classroom/:_id/progress', AuthMiddleware.isInstructor, calculateProgressReport)
 }
 
 module.exports = {init}

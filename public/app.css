@@ -108,6 +108,10 @@ body {
   position: relative;
 }
 
+.main-container #tasks .task-content .progress {
+  margin: 10px 0 0 0;
+}
+
 .main-container #tasks .task-content .description {
   white-space: pre-wrap;
 }

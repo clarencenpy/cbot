@@ -7,6 +7,19 @@ const App = {
 
   initComponents() {
     $('.ui.accordion').accordion();
+    this.updateProgress()
+  },
+
+  updateProgress() {
+    $.getJSON(`classroom/${this.classroomId}/progress`, (report) => {
+      console.log(report)
+      //update all progress bars
+      $('.task-content').each((i, elem) => {
+        const $elem = $(elem)
+        let taskId = $elem.data('taskid')
+        $elem.find('.progress').progress('set total', report.totalStudents).progress('set progress', report.taskReport[taskId].length)
+      })
+    })
   },
 
   bindEvents() {
@@ -28,16 +41,11 @@ const App = {
             }),
             success: (taskHtml) => {
               let $taskCard = $(taskHtml)
-              $('#taskList').append($taskCard)
-              $('#taskList').accordion('refresh')
-              $taskCard.find('.progress').progress({
-                text: {
-                  active: '{value} of {total} students joined',
-                  success: 'Class is full!'
-                }
-              }).progress('update progress')
+              $('#taskList').append($taskCard).accordion('refresh')
             }
           })
+
+          this.updateProgress()
         }
       }).modal('show')
     })

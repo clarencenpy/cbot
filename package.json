@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/clarencenpy/cbot#readme",
   "dependencies": {
+    "asyncawait": "^1.0.6",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.2",
