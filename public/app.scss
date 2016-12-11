@@ -81,75 +81,90 @@ body {
 /*Main Page*/
 .main-container {
   padding: 20px;
+}
 
-  #classrooms {
+#classrooms {
+  position: relative;
+
+  &.segment {
+    border-top: 4px solid #c50000;
+  }
+
+  #btn-createClassroom {
+    position: absolute;
+    display: inline;
+    top: 20px;
+    right: 20px;
+  }
+}
+
+#tasks {
+  #btn-createTask {
+    position: absolute;
+    display: inline;
+    top: 20px;
+    right: 20px;
+  }
+
+  .taskCard {
     position: relative;
 
-    &.segment {
-      border-top: 4px solid #c50000;
-    }
-
-    #btn-createClassroom {
-      position: absolute;
-      display: inline;
-      top: 20px;
-      right: 20px;
-    }
-  }
-
-  #tasks {
-    #btn-createTask {
-      position: absolute;
-      display: inline;
-      top: 20px;
-      right: 20px;
-    }
-
-    .taskCard {
-      position: relative;
-
-      .progress {
-        margin: 10px 0 0 0;
-      }
-
-      .description {
-        white-space: pre-wrap;
-      }
-
-      .points {
-        position: absolute;
-        right: 10px;
-        top: 7px;
-      }
-    }
-  }
-
-  #students {
     .progress {
-      margin: 0;
+      margin: 10px 0 0 0;
     }
-  }
 
-  #classroom-banner {
-    position: relative;
-    max-width: 400px;
+    .description {
+      white-space: pre-wrap;
+    }
 
-    #btn-back {
-      font-size: 25px;
-      line-height: 50px;
-      cursor: pointer;
+    .points {
       position: absolute;
-      top: 0;
-      transition: transform 0.1s;
-      &:hover {
-        transform: scale(1.1)
-      }
+      right: 10px;
+      top: 7px;
     }
+  }
+}
 
-    h3 {
-      display: inline;
-      margin-left: 45px;
+#students {
+  .progress {
+    margin: 0;
+  }
+}
+
+#classroom-banner {
+  position: relative;
+  max-width: 400px;
+
+  #btn-back {
+    font-size: 25px;
+    line-height: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    transition: transform 0.1s;
+    &:hover {
+      transform: scale(1.1)
     }
   }
 
+  h3 {
+    display: inline;
+    margin-left: 45px;
+  }
+}
+
+#studentWorkspace {
+  .taskCard {
+    border-top: 0 solid transparent;
+    cursor: pointer;
+    transition: border-top 0.2s;
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+
+    &.selected {
+      border-top: 4px solid green;
+    }
+  }
 }

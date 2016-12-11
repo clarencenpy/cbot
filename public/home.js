@@ -67,8 +67,13 @@ const App = {
     })
 
     $('.classroomCard').on('click', (e) => {
-      let id = $(e.target).closest('.classroomCard').data('id')
-      window.location.href = `/instructor/classroom/${id}`
+      let $classroomCard = $(e.target).closest('.classroomCard')
+      let id = $classroomCard.data('id')
+      if ($classroomCard.data('role') === 'Instructor') {
+        window.location.href = `/instructor/classroom/${id}`
+      } else {
+        window.location.href = `/student/classroom/${id}`
+      }
     })
   },
 

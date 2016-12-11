@@ -82,56 +82,56 @@ body {
   padding: 20px;
 }
 
-.main-container #classrooms {
+#classrooms {
   position: relative;
 }
 
-.main-container #classrooms.segment {
+#classrooms.segment {
   border-top: 4px solid #c50000;
 }
 
-.main-container #classrooms #btn-createClassroom {
+#classrooms #btn-createClassroom {
   position: absolute;
   display: inline;
   top: 20px;
   right: 20px;
 }
 
-.main-container #tasks #btn-createTask {
+#tasks #btn-createTask {
   position: absolute;
   display: inline;
   top: 20px;
   right: 20px;
 }
 
-.main-container #tasks .taskCard {
+#tasks .taskCard {
   position: relative;
 }
 
-.main-container #tasks .taskCard .progress {
+#tasks .taskCard .progress {
   margin: 10px 0 0 0;
 }
 
-.main-container #tasks .taskCard .description {
+#tasks .taskCard .description {
   white-space: pre-wrap;
 }
 
-.main-container #tasks .taskCard .points {
+#tasks .taskCard .points {
   position: absolute;
   right: 10px;
   top: 7px;
 }
 
-.main-container #students .progress {
+#students .progress {
   margin: 0;
 }
 
-.main-container #classroom-banner {
+#classroom-banner {
   position: relative;
   max-width: 400px;
 }
 
-.main-container #classroom-banner #btn-back {
+#classroom-banner #btn-back {
   font-size: 25px;
   line-height: 50px;
   cursor: pointer;
@@ -140,13 +140,27 @@ body {
   transition: transform 0.1s;
 }
 
-.main-container #classroom-banner #btn-back:hover {
+#classroom-banner #btn-back:hover {
   transform: scale(1.1);
 }
 
-.main-container #classroom-banner h3 {
+#classroom-banner h3 {
   display: inline;
   margin-left: 45px;
+}
+
+#studentWorkspace .taskCard {
+  border-top: 0 solid transparent;
+  cursor: pointer;
+  transition: border-top 0.2s;
+}
+
+#studentWorkspace .taskCard:not(:last-child) {
+  margin-bottom: 0;
+}
+
+#studentWorkspace .taskCard.selected {
+  border-top: 4px solid green;
 }
 
 /*# sourceMappingURL=app.css.map */
