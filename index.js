@@ -42,7 +42,7 @@ fs.readdirSync('./routes').forEach(function (file) {
 const Classroom = require('./models/classroom.js')
 app.get('/main', (req, res) => {
   //redirect to the correct page based on role
-  if (!req.user) res.redirect('/')
+  if (!req.user) return res.redirect('/')
 
   if (req.user.role === 'Student') {
     Classroom.find({}, (err, classrooms) => {

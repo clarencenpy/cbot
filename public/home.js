@@ -1,20 +1,34 @@
 const App = {
   init() {
     this.initComponents()
+    this.initStudentProgress()
     this.bindEvents()
   },
 
   initComponents() {
-    $('.progress').progress({
+    $('.classAttendanceProgress').progress().progress({
       text: {
         active: '{value} of {total} students joined',
         success: 'Class is full!'
       }
-    }).progress('update progress')
+    })
   },
 
-  refresh() {
-    $('.progress').progress('update progress')
+  initStudentProgress() {
+    $.getJSON('/classroom/progress', (studentProgressByClassroom) => {
+      $.each(studentProgressByClassroom, (classroomId, progress) => {
+        let $classroom = $($(`.classroomCard[data-id="${classroomId}"]`)[0])
+        let $progress = $classroom.find('.studentProgress')
+        $progress.progress({
+          text: {
+            active: '{value} of {total} tasks completed',
+            success: 'All Tasks Complete!'
+          }
+        })
+        $progress.progress('set total', progress.totalTasks)
+        $progress.progress('set progress', progress.totalSubmissions)
+      })
+    })
   },
 
   bindEvents() {
@@ -40,7 +54,7 @@ const App = {
             success: (classroomHtml) => {
               let $classroomCard = $(classroomHtml)
               $('#classroomList').append($classroomCard)
-              $classroomCard.find('.progress').progress({
+              $classroomCard.find('.classAttendanceProgress').progress({
                 text: {
                   active: '{value} of {total} students joined',
                   success: 'Class is full!'

@@ -7,7 +7,7 @@ const async = require('asyncawait').async
 const await = require('asyncawait').await
 
 const getClassroom = (req, res) => {
-  Classroom.findOneById(req.params._id, (err, classroom) => {
+  Classroom.findById(req.params._id, (err, classroom) => {
     if (classroom) {
       res.send(classroom)
     } else {
@@ -114,7 +114,29 @@ const calculateProgressReport = async((req, res) => {
 
 })
 
+const studentProgress = async((req, res) => {
+  let studentId = req.user._id
+  let classrooms = await(Classroom.find({students: studentId}))
+  let studentProgressByClassroom = {}
+  for (let classroom of classrooms) {
+    let totalSubmissions = 0
+    for (let task of classroom.tasks) {
+      let submission = await(Submission.findOne({taskId: task._id, userId: studentId}))
+      if (submission) totalSubmissions++
+    }
+    studentProgressByClassroom[classroom._id] = {
+      totalTasks: classroom.tasks.length,
+      totalSubmissions
+    }
+  }
+
+  res.send(studentProgressByClassroom)
+
+})
+
 const init = (app) => {
+  app.get('/classroom/progress', AuthMiddleware.isLoggedIn, studentProgress)
+
   app.get('/classroom/:_id', AuthMiddleware.isLoggedIn, getClassroom)
   app.get('/classrooms', AuthMiddleware.isLoggedIn, getAllClassrooms)
   app.get('/classrooms/:createdBy', AuthMiddleware.isLoggedIn, getAllClassroomsByUser)

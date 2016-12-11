@@ -12,10 +12,17 @@
         </div>
     </div>
     <div class="extra content">
-        <div class="ui teal small progress"
+        <% if (user.role === 'Instructor') { %>
+        <div class="ui indicating small progress classAttendanceProgress"
              data-value=<%= classroom.students.length %> data-total=<%= classroom.expectedAttendance %>>
             <div class="bar"></div>
             <div class="label"></div>
         </div>
+        <% } else { %>
+        <div class="ui indicating small progress studentProgress">
+            <div class="bar"></div>
+            <div class="label"></div>
+        </div>
+        <% } %>
     </div>
 </div>
