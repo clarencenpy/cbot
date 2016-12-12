@@ -2,13 +2,21 @@
     <div class="title">
         <i class="dropdown icon"></i>
         <%= task.name %>
-        <div class="ui yellow label points">
-            <i class="star icon"></i> <%= task.points %>
+
+        <div class="status-container">
+            <% if (task.done) { %>
+            <div class="ui green label status">
+                <i class="check icon"></i>Done
+            </div>
+            <% } %>
         </div>
+
+        <% if (user && user.role === 'Instructor') { %>
         <div class="ui indicating small progress">
             <div class="bar"></div>
             <div class="label"></div>
         </div>
+        <% } %>
     </div>
     <div class="content">
         <p class="description transition hidden"><%= task.description %></p>

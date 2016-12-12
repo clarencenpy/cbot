@@ -9,7 +9,7 @@
     </div>
     <hr>
     <br>
-    <div id="taskList" class="ui cards">
+    <div id="taskList" class="ui styled accordion">
         <% tasks.forEach(task => { %>
         <%- include('taskCard-student', {task}) %>
         <% }) %>

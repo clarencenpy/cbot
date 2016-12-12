@@ -103,7 +103,6 @@ body {
   top: 20px;
   right: 20px;
 }
-
 #tasks .taskCard {
   position: relative;
 }
@@ -116,7 +115,7 @@ body {
   white-space: pre-wrap;
 }
 
-#tasks .taskCard .points {
+#tasks .taskCard .status {
   position: absolute;
   right: 10px;
   top: 7px;
@@ -128,7 +127,6 @@ body {
 
 #classroom-banner {
   position: relative;
-  max-width: 400px;
 }
 
 #classroom-banner #btn-back {
@@ -150,17 +148,68 @@ body {
 }
 
 #studentWorkspace .taskCard {
-  border-top: 0 solid transparent;
-  cursor: pointer;
-  transition: border-top 0.2s;
+  background-color: whitesmoke;
 }
 
-#studentWorkspace .taskCard:not(:last-child) {
-  margin-bottom: 0;
+#studentWorkspace .taskCard.current {
+  background-color: white;
 }
 
-#studentWorkspace .taskCard.selected {
-  border-top: 4px solid green;
+#studentWorkspace .taskCard.current .title {
+  color: black;
+  font-weight: bold;
+}
+
+#studentWorkspace .attached.segment {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#studentWorkspace .taskDescriptionCard {
+  margin-top: 0;
+}
+
+#studentWorkspace .taskDescriptionCard.hide {
+  display: none;
+}
+
+#studentWorkspace #btn-run {
+  border-right: 1px solid #f0f0f0;
+}
+
+#studentWorkspace #codepads {
+  padding: 0;
+  position: relative;
+}
+
+#studentWorkspace #codepads #htmlLabel {
+  position: absolute;
+  top: 10px;
+  left: calc(100% + 1rem + 1.2em - 13px);
+  z-index: 10;
+}
+
+#studentWorkspace #codepads #jsLabel {
+  position: absolute;
+  z-index: 10;
+  top: 310px;
+  left: calc(100% + 1rem + 1.2em - 14px);
+}
+
+#studentWorkspace #codepads #codepadHtml, #studentWorkspace #codepads #codepadJs {
+  font-family: Consolas;
+  font-size: 18px;
+  height: 300px;
+  width: 100%;
+}
+
+#studentWorkspace #codepads #codepadHtml {
+  border-bottom: 1px solid darkgrey;
+}
+
+#iframe {
+  width: 100%;
+  height: 700px;
 }
 
 /*# sourceMappingURL=app.css.map */

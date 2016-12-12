@@ -8,7 +8,8 @@ const classroomSchema = new mongoose.Schema({
   tasks: [{
     name: String,
     description: String,
-    points: Number
+    htmlCode: String,
+    jsCode: String
   }],
   // classEnded: Boolean
 })

@@ -3,9 +3,8 @@ const submissionSchema = new mongoose.Schema({
   classroomId: {type: mongoose.Schema.Types.ObjectId, ref: 'Classroom'},
   userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   taskId: String,
-  fiddleUrl: String,
-  passed: Boolean,
-  code: String
+  htmlCode: String,
+  jsCode: String
 })
 
 submissionSchema.index({taskId: 1, userId: 1}, {unique: true})

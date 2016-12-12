@@ -26,18 +26,15 @@ const getAllSubmissionsByTask = (req, res) => {
 }
 
 const putSubmission = (req, res) => {
-  Submission(Object.assign({}, req.body, {
-    userId: req.params.userId,
-    taskId: req.params.taskId
-  })).save(err => {
-    if (err && err.code === 11000) {
-      //11000 is the error code that the mongo driver returns
-      //when there is a duplicate key
-      res.status(403).send('Already Exists')
-    } else {
-      res.status(201).send()
-    }
-  })
+  Submission.findOneAndUpdate(
+      {userId: req.user._id, taskId: req.params.taskId},
+      {htmlCode: req.body.htmlCode, jsCode: req.body.jsCode},
+      {upsert: true},
+      (err, doc) => {
+        if (err) throw error
+        res.send()
+      }
+  )
 }
 
 const postSubmission = (req, res) => {
@@ -73,7 +70,7 @@ const init = (app) => {
   app.get('/submission/:userId/:taskId', AuthMiddleware.isLoggedIn, getSubmission)
   app.get('/submissions/byUser/:userId', AuthMiddleware.isLoggedIn, getAllSubmissionsByUser)
   app.get('/submissions/byTask/:taskId', AuthMiddleware.isLoggedIn, getAllSubmissionsByTask)
-  app.put('/submission/:userId/:taskId', AuthMiddleware.isLoggedIn, putSubmission)
+  app.put('/submission/:taskId', AuthMiddleware.isLoggedIn, putSubmission)
   app.post('/submission/:userId/:taskId', AuthMiddleware.isLoggedIn, postSubmission)
   app.delete('/submission/:userId/:taskId', AuthMiddleware.isLoggedIn, deleteSubmission)
 }

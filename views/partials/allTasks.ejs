@@ -3,10 +3,12 @@
         <i class="check square icon"></i>
         <div class="content">Tasks</div>
     </h2>
+    <% if (user && user.role === 'Instructor') { %>
     <div id="btn-createTask" class="ui red labeled icon button">
         <i class="plus icon"></i>
         Create New Task
     </div>
+    <% } %>
     <hr>
     <br>
     <div id="taskList" class="ui styled accordion">

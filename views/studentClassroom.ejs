@@ -13,15 +13,32 @@
 <%- include('partials/header') %>
 
 <div class="main-container">
-    <div id="classroom-banner" class="ui inverted segment">
-        <i id="btn-back" class="arrow circle left icon inverted"></i>
-        <h3> <%= classroom.name %></h3>
-    </div>
 
     <div id="studentWorkspace" class="ui grid">
-        <div class="column six wide">
-            <%- include('partials/allTasks-student', {tasks: classroom.tasks}) %>
+        <div class="column five wide">
+            <div id="classroom-banner" class="ui inverted segment">
+                <i id="btn-back" class="arrow circle left icon inverted"></i>
+                <h3> <%= classroom.name %></h3>
+            </div>
+            <%- include('partials/allTasks', {tasks: classroom.tasks}) %>
         </div>
+        <div class="column eleven wide">
+            <div id="codepads" class="ui attached segment">
+                <div id="codepadHtml"></div>
+                <div id="codepadJs"></div>
+                <div id="htmlLabel" class="ui teal right ribbon label">HTML/CSS</div>
+                <div id="jsLabel" class="ui teal right ribbon label">Javascript</div>
+            </div>
+            <div class="ui two bottom attached buttons">
+                <div id='btn-run' class="ui blue button">Run Code</div>
+                <div id="btn-submit" class="ui blue button">Submit</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui fullscreen modal">
+        <i class="close icon"></i>
+        <iframe id="iframe" frameborder="0"></iframe>
     </div>
 </div>
 
@@ -29,6 +46,7 @@
         crossorigin="anonymous"></script>
 <script src="/lib/semantic/semantic-ui.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.1/socket.io.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
 <script src="/studentClassroom.js"></script>
 </body>
 </html>
