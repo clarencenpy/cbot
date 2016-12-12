@@ -91,7 +91,11 @@ const calculateProgressReport = async((req, res) => {
     let taskProgress = []
     let submissions = await(Submission.find({taskId: task._id}))
     for (let s of submissions) {
-      taskProgress.push(s.userId)
+      if (classroom.students.findIndex(studentId => {
+            return studentId.valueOf().toString() === s.userId.valueOf().toString()
+          }) !== -1) {
+        taskProgress.push(s.userId)
+      }
     }
     taskReport[task._id] = taskProgress //list of users that completed it
   }
@@ -100,7 +104,11 @@ const calculateProgressReport = async((req, res) => {
     let studentProgress = []
     let submissions = await(Submission.find({userId: studentId}))
     for (let s of submissions) {
-      studentProgress.push(s.taskId)
+      if (classroom.tasks.findIndex(task => {
+            return task._id.valueOf().toString() === s.taskId.valueOf().toString()
+          }) !== -1) {
+        studentProgress.push(s.taskId)
+      }
     }
     studentReport[studentId] = studentProgress
   }
