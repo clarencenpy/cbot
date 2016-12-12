@@ -30,12 +30,15 @@ app.use(session({secret: 'dingdong'}))
 app.use(passport.initialize())
 app.use(passport.session())
 
+const httpServer = require('http').createServer(app)
+const io = require('socket.io')(httpServer)
+
 // Load all routes in the routes directory
 fs.readdirSync('./routes').forEach(function (file) {
   // There might be non-js files in the directory that should not be loaded
   if (path.extname(file) === '.js') {
     console.log("Adding routes in " + file)
-    require('./routes/' + file).init(app)
+    require('./routes/' + file).init(app, io)
   }
 })
 
@@ -64,18 +67,8 @@ app.get('/', (req, res) => {
 // Handle static files
 app.use(express.static(__dirname + '/public'))
 
-const httpServer = require('http').createServer(app)
-const io = require('socket.io')(httpServer)
-
-// Socket io events
-io.on('connection', socket => {
-  console.log('connected to default!')
-})
-const special = io.of('special')
-special.on('connection', () => {
-  console.log('connected to special')
-})
-
+// Socket io initialisation
+require('./sockets').init(io)
 
 httpServer.listen(3000, () => {
   console.log("Server listening at http://localhost:3000/")

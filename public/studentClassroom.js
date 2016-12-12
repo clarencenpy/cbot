@@ -2,6 +2,7 @@ const App = {
   init() {
     this.initComponents()
     this.bindEvents()
+    this.socket = io()
   },
 
   initComponents() {

@@ -3,6 +3,7 @@ const App = {
     this.initComponents()
     this.initStudentProgress()
     this.bindEvents()
+    this.socket = io()
   },
 
   initComponents() {
@@ -29,18 +30,17 @@ const App = {
   bindEvents() {
 
     $('.classroomCard').on('click', (e) => {
-          let $classroomCard = $(e.target).closest('.classroomCard')
-          let id = $classroomCard.data('id')
+      let $classroomCard = $(e.target).closest('.classroomCard')
+      let id = $classroomCard.data('id')
 
       //enter the class
-          $.ajax({
-            url: `/enterClassroom/${id}`,
-            method: 'POST'
-          })
+      $.ajax({
+        url: `/enterClassroom/${id}`,
+        method: 'POST'
+      })
 
-          window.location.href = `/student/classroom/${id}`
-        }
-    )
+      window.location.href = `/student/classroom/${id}`
+    })
   },
 
 }

@@ -2,6 +2,7 @@ const App = {
   init() {
     this.initComponents()
     this.bindEvents()
+    this.bindSocketEvents()
   },
 
   initComponents() {
@@ -10,6 +11,16 @@ const App = {
         active: '{value} of {total} students joined',
         success: 'Class is full!'
       }
+    })
+  },
+
+  bindSocketEvents() {
+    this.socket = io()
+    this.socket.on('enterClassroom', classroomId => {
+      $(`.classroomCard[data-id="${classroomId}"]`).find('.progress').progress('increment')
+    })
+    this.socket.on('leaveClassroom', classroomId => {
+      $(`.classroomCard[data-id="${classroomId}"]`).find('.progress').progress('decrement')
     })
   },
 

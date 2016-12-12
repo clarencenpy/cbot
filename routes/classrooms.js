@@ -134,7 +134,7 @@ const studentProgress = async((req, res) => {
 
 })
 
-const enterClassroom = async((req, res) => {
+const enterClassroom = async((io, req, res) => {
   let classroom = await(Classroom.findById(req.params._id))
   if (classroom.students.findIndex(studentId => {
         return studentId.valueOf().toString() === req.user._id.valueOf().toString()
@@ -142,20 +142,22 @@ const enterClassroom = async((req, res) => {
     //student not yet entered
     classroom.students.push(req.user._id)
     classroom.save()
+    io.sockets.emit('enterClassroom', req.params._id)
   }
   res.send()
 })
 
-const leaveClassroom = async((req, res) => {
+const leaveClassroom = async((io, req, res) => {
   let classroom = await(Classroom.findById(req.params._id))
   classroom.students = classroom.students.filter(studentId => {
     return studentId.valueOf().toString() !== req.user._id.valueOf().toString()
   })
   classroom.save()
+  io.sockets.emit('leaveClassroom', req.params._id)
   res.send()
 })
 
-const init = (app) => {
+const init = (app, io) => {
   app.get('/classroom/progress', AuthMiddleware.isLoggedIn, studentProgress)
 
   app.get('/classroom/:_id', AuthMiddleware.isLoggedIn, getClassroom)
@@ -167,8 +169,8 @@ const init = (app) => {
 
   app.put('/classroom/:_id/task', AuthMiddleware.isInstructor, addTask)
   app.get('/classroom/:_id/progress', AuthMiddleware.isInstructor, calculateProgressReport)
-  app.post('/enterClassroom/:_id', AuthMiddleware.isStudent, enterClassroom)
-  app.post('/leaveClassroom/:_id', AuthMiddleware.isStudent, leaveClassroom)
+  app.post('/enterClassroom/:_id', AuthMiddleware.isStudent, enterClassroom.bind(null, io))
+  app.post('/leaveClassroom/:_id', AuthMiddleware.isStudent, leaveClassroom.bind(null, io))
 }
 
 module.exports = {init}
