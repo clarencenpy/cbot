@@ -15,11 +15,6 @@ const App = {
     this.codepadJs.getSession().setMode('ace/mode/javascript')
     this.codepadJs.setOption('showPrintMargin', false)
 
-    //preload jquery
-    // let iframe = $('#iframe')[0]
-    // iframe.contentWindow.document.open()
-    // iframe.contentWindow.document.write('<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>')
-    // iframe.contentWindow.document.close()
     $('.fullscreen.modal').modal()
   },
 
