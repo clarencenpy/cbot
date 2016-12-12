@@ -108,7 +108,7 @@ const calculateProgressReport = async((req, res) => {
   res.send({
     taskReport,
     studentReport,
-    totalStudents: classroom.students.length,
+    totalStudents: classroom.expectedAttendance,
     totalTasks: classroom.tasks.length
   })
 
