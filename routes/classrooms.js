@@ -35,7 +35,7 @@ const putClassroom = (req, res) => {
     createdBy: process.env.NODE_ENV === 'development' ? 'ADMIN' : req.user.id
   })).save((err, doc) => {
     if (err) throw err
-    res.status(201).render('partials/classroomCard', {classroom: doc})
+    res.status(201).render('partials/classroomCard', {user: req.user, classroom: doc})
   })
 }
 

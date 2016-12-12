@@ -13,7 +13,7 @@ const App = {
   initStudentProgress() {
     $.getJSON('/classroom/progress', (studentProgressByClassroom) => {
       $.each(studentProgressByClassroom, (classroomId, progress) => {
-        let $classroom = $($(`.classroomCard[data-id="${classroomId}"]`)[0])
+        let $classroom = $(`.classroomCard[data-id="${classroomId}"]`).first()
         let $progress = $classroom.find('.studentProgress')
         $progress.progress({
           text: {

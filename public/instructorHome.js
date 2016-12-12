@@ -6,11 +6,15 @@ const App = {
   },
 
   initComponents() {
-    $('.classAttendanceProgress').progress().progress({
-      text: {
-        active: '{value} of {total} students joined',
-        success: 'Class is full!'
-      }
+    $('.classAttendanceProgress').each((i, e) => {
+      let $progress = $(e)
+      $progress.progress({
+        text: {
+          active: '{value} of {total} students joined',
+          success: 'Class is full!'
+        }
+      }).progress('set total', $progress.data('total'))
+      .progress('set progress', $progress.data('value'))
     })
   },
 
@@ -47,12 +51,14 @@ const App = {
             success: (classroomHtml) => {
               let $classroomCard = $(classroomHtml)
               $('#classroomList').append($classroomCard)
-              $classroomCard.find('.classAttendanceProgress').progress({
+              let $progress = $classroomCard.find('.classAttendanceProgress')
+              $progress.progress({
                 text: {
                   active: '{value} of {total} students joined',
                   success: 'Class is full!'
                 }
-              }).progress('update progress')
+              }).progress('set total', $progress.data('total'))
+              .progress('set progress', $progress.data('value'))
             }
           })
         }
