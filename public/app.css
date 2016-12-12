@@ -125,6 +125,14 @@ body {
   margin: 0;
 }
 
+#students .studentCard .content {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+#students .studentCard .content .header {
+  text-align: center;
+}
 #students .studentCard img {
   height: 150px;
   object-fit: cover;

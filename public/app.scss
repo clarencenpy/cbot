@@ -130,11 +130,21 @@ body {
     margin: 0;
   }
 
-  .studentCard img {
-    height: 150px;
-    object-fit: cover;
-    object-position: center;
+  .studentCard {
+    .content {
+      .header {
+        text-align: center;
+      }
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+    img {
+      height: 150px;
+      object-fit: cover;
+      object-position: center;
+    }
   }
+
 }
 
 #classroom-banner {
