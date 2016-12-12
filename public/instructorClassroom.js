@@ -3,6 +3,7 @@ const App = {
     this.classroomId = $('body').data('classroomid')
     this.initComponents()
     this.bindEvents()
+    this.bindSocketEvents()
   },
 
   initComponents() {
@@ -13,7 +14,6 @@ const App = {
 
   updateProgress() {
     $.getJSON(`/classroom/${this.classroomId}/progress`, (report) => {
-      console.log(report)
       //update all progress bars on tasks
       $('.taskCard').each((i, elem) => {
         const $elem = $(elem)
@@ -31,6 +31,23 @@ const App = {
         .progress('set total', report.totalTasks)
         .progress('set progress', report.studentReport[studentId].length)
       })
+    })
+  },
+
+  bindSocketEvents() {
+    this.socket = io()
+    this.socket.on('enterClassroom', data => {
+      console.log(data)
+      $.get(`/studentCard/${data.studentId}`, html => {
+        $('#studentList').append(html)
+      })
+      $('.studentCard .image').dimmer({on: 'hover'})
+      this.updateProgress()
+    })
+
+    this.socket.on('leaveClassroom', data => {
+      $(`.studentCard[data-studentid="${data.studentId}"]`).first().remove()
+      this.updateProgress()
     })
   },
 

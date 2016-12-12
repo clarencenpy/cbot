@@ -142,7 +142,7 @@ const enterClassroom = async((io, req, res) => {
     //student not yet entered
     classroom.students.push(req.user._id)
     classroom.save()
-    io.sockets.emit('enterClassroom', req.params._id)
+    io.sockets.emit('enterClassroom', {classroomId: req.params._id, studentId: req.user._id})
   }
   res.send()
 })
@@ -153,7 +153,7 @@ const leaveClassroom = async((io, req, res) => {
     return studentId.valueOf().toString() !== req.user._id.valueOf().toString()
   })
   classroom.save()
-  io.sockets.emit('leaveClassroom', req.params._id)
+  io.sockets.emit('leaveClassroom', {classroomId: req.params._id, studentId: req.user._id})
   res.send()
 })
 

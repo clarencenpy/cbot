@@ -16,11 +16,11 @@ const App = {
 
   bindSocketEvents() {
     this.socket = io()
-    this.socket.on('enterClassroom', classroomId => {
-      $(`.classroomCard[data-id="${classroomId}"]`).find('.progress').progress('increment')
+    this.socket.on('enterClassroom', data => {
+      $(`.classroomCard[data-id="${data.classroomId}"]`).find('.progress').progress('increment')
     })
-    this.socket.on('leaveClassroom', classroomId => {
-      $(`.classroomCard[data-id="${classroomId}"]`).find('.progress').progress('decrement')
+    this.socket.on('leaveClassroom', data => {
+      $(`.classroomCard[data-id="${data.classroomId}"]`).find('.progress').progress('decrement')
     })
   },
 
