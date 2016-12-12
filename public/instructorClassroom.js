@@ -37,17 +37,22 @@ const App = {
   bindSocketEvents() {
     this.socket = io()
     this.socket.on('enterClassroom', data => {
-      console.log(data)
       $.get(`/studentCard/${data.studentId}`, html => {
         $('#studentList').append(html)
+        $('.studentCard .image').dimmer({on: 'hover'})
+        this.updateProgress()
       })
-      $('.studentCard .image').dimmer({on: 'hover'})
-      this.updateProgress()
     })
 
     this.socket.on('leaveClassroom', data => {
       $(`.studentCard[data-studentid="${data.studentId}"]`).first().remove()
       this.updateProgress()
+    })
+
+    this.socket.on('submissionReceived', data => {
+      if (data.classroomId === this.classroomId) {
+        this.updateProgress()
+      }
     })
   },
 
