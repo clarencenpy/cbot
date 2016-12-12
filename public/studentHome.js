@@ -32,10 +32,10 @@ const App = {
           let $classroomCard = $(e.target).closest('.classroomCard')
           let id = $classroomCard.data('id')
 
-          //join the class
+      //enter the class
           $.ajax({
             url: `/enterClassroom/${id}`,
-            method: 'PUT'
+            method: 'POST'
           })
 
           window.location.href = `/student/classroom/${id}`

@@ -86,6 +86,15 @@ const App = {
         }
       }, 1000)
     })
+
+    $('#btn-leave').on('click', () => {
+      let classroomId = $('body').data('classroomid')
+      $.ajax({
+        url: `/leaveClassroom/${classroomId}`,
+        method: 'POST'
+      })
+      location.href = '/main'
+    })
   },
 
   selectTask(id) {

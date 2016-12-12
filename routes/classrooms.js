@@ -146,6 +146,15 @@ const enterClassroom = async((req, res) => {
   res.send()
 })
 
+const leaveClassroom = async((req, res) => {
+  let classroom = await(Classroom.findById(req.params._id))
+  classroom.students = classroom.students.filter(studentId => {
+    return studentId.valueOf().toString() !== req.user._id.valueOf().toString()
+  })
+  classroom.save()
+  res.send()
+})
+
 const init = (app) => {
   app.get('/classroom/progress', AuthMiddleware.isLoggedIn, studentProgress)
 
@@ -158,7 +167,8 @@ const init = (app) => {
 
   app.put('/classroom/:_id/task', AuthMiddleware.isInstructor, addTask)
   app.get('/classroom/:_id/progress', AuthMiddleware.isInstructor, calculateProgressReport)
-  app.put('/enterClassroom/:_id', AuthMiddleware.isStudent, enterClassroom)
+  app.post('/enterClassroom/:_id', AuthMiddleware.isStudent, enterClassroom)
+  app.post('/leaveClassroom/:_id', AuthMiddleware.isStudent, leaveClassroom)
 }
 
 module.exports = {init}
