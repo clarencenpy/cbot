@@ -5,10 +5,11 @@
     </h2>
     <hr>
     <br>
-    <div id="studentList" class="ui four link cards">
+    <div id="studentList" class="ui four doubling cards">
         <% students.forEach(student => { %>
         <%- include('studentCard', {student}) %>
         <% }) %>
     </div>
+
 </div>
 

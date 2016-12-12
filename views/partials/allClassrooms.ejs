@@ -1,17 +1,24 @@
 <div id="classrooms" class="ui padded segment">
-    <h2 class="ui header">
-        <i class="graduation icon"></i>
-        <div class="content">Active Classrooms</div>
-    </h2>
-    <% if (user.role === 'Instructor') { %>
-    <div id="btn-createClassroom" class="ui red labeled icon button">
-        <i class="plus icon"></i>
-        Create New Classroom
+    <div class="ui stackable grid">
+        <div class="left floated six wide column">
+            <h2 class="ui header">
+                <i class="graduation icon"></i>
+                <div class="content">Active Classrooms</div>
+            </h2>
+        </div>
+        <div class="right floated five wide column computer only">
+            <% if (user.role === 'Instructor') { %>
+            <div id="btn-createClassroom" class="ui red labeled icon button right floated">
+                <i class="plus icon"></i>
+                Create New Classroom
+            </div>
+            <% } %>
+        </div>
     </div>
-    <% } %>
+
     <hr>
     <br>
-    <div id="classroomList" class="ui four link cards">
+    <div id="classroomList" class="ui four link doubling stackable cards">
         <% classrooms.forEach(classroom => { %>
         <%- include('classroomCard', {classroom}) %>
         <% }) %>

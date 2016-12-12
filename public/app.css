@@ -91,10 +91,8 @@ body {
 }
 
 #classrooms #btn-createClassroom {
-  position: absolute;
-  display: inline;
-  top: 20px;
-  right: 20px;
+  position: relative;
+  top: -8px;
 }
 
 #tasks #btn-createTask {
@@ -124,7 +122,6 @@ body {
 #students .progress {
   margin: 0;
 }
-
 #students .studentCard .content {
   padding-top: 10px;
   padding-bottom: 5px;
