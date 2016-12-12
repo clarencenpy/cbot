@@ -129,6 +129,12 @@ body {
   .progress {
     margin: 0;
   }
+
+  .studentCard img {
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 #classroom-banner {

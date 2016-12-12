@@ -1,7 +1,6 @@
 const App = {
   init() {
     this.initComponents()
-    this.initStudentProgress()
     this.bindEvents()
   },
 
@@ -11,23 +10,6 @@ const App = {
         active: '{value} of {total} students joined',
         success: 'Class is full!'
       }
-    })
-  },
-
-  initStudentProgress() {
-    $.getJSON('/classroom/progress', (studentProgressByClassroom) => {
-      $.each(studentProgressByClassroom, (classroomId, progress) => {
-        let $classroom = $($(`.classroomCard[data-id="${classroomId}"]`)[0])
-        let $progress = $classroom.find('.studentProgress')
-        $progress.progress({
-          text: {
-            active: '{value} of {total} tasks completed',
-            success: 'All Tasks Complete!'
-          }
-        })
-        $progress.progress('set total', progress.totalTasks)
-        $progress.progress('set progress', progress.totalSubmissions)
-      })
     })
   },
 
@@ -69,11 +51,7 @@ const App = {
     $('.classroomCard').on('click', (e) => {
       let $classroomCard = $(e.target).closest('.classroomCard')
       let id = $classroomCard.data('id')
-      if ($classroomCard.data('role') === 'Instructor') {
-        window.location.href = `/instructor/classroom/${id}`
-      } else {
-        window.location.href = `/student/classroom/${id}`
-      }
+      window.location.href = `/instructor/classroom/${id}`
     })
   },
 

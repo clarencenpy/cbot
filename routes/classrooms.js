@@ -134,6 +134,18 @@ const studentProgress = async((req, res) => {
 
 })
 
+const enterClassroom = async((req, res) => {
+  let classroom = await(Classroom.findById(req.params._id))
+  if (classroom.students.findIndex(studentId => {
+        return studentId.valueOf().toString() === req.user._id.valueOf().toString()
+      }) === -1) {
+    //student not yet entered
+    classroom.students.push(req.user._id)
+    classroom.save()
+  }
+  res.send()
+})
+
 const init = (app) => {
   app.get('/classroom/progress', AuthMiddleware.isLoggedIn, studentProgress)
 
@@ -146,6 +158,7 @@ const init = (app) => {
 
   app.put('/classroom/:_id/task', AuthMiddleware.isInstructor, addTask)
   app.get('/classroom/:_id/progress', AuthMiddleware.isInstructor, calculateProgressReport)
+  app.put('/enterClassroom/:_id', AuthMiddleware.isStudent, enterClassroom)
 }
 
 module.exports = {init}
