@@ -35,7 +35,6 @@ const App = {
       $modal.modal({
         onApprove: () => {
           let name = $modal.find('input[name="name"]').val()
-          let password = $modal.find('input[name="password"]').val()
           let expectedAttendance = Number($modal.find('input[name="expectedAttendance"]').val())
           $.ajax({
             method: 'PUT',
@@ -43,7 +42,6 @@ const App = {
             url: '/classroom',
             data: JSON.stringify({
               name,
-              password,
               expectedAttendance,
               tasks: [],
               students: []

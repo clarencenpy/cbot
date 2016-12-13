@@ -1,5 +1,4 @@
 const isLoggedIn = (req, res, next) => {
-  return next()
   if (req.user) {
     next()
   } else {
@@ -8,7 +7,6 @@ const isLoggedIn = (req, res, next) => {
 }
 
 const isStudent = (req, res, next) => {
-  return next()
   if (req.user && req.user.role === 'Student') {
     next()
   } else {
@@ -17,7 +15,6 @@ const isStudent = (req, res, next) => {
 }
 
 const isInstructor = (req, res, next) => {
-  return next()
   if (req.user && req.user.role === 'Instructor') {
     next()
   } else {
