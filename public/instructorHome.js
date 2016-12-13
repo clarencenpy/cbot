@@ -50,6 +50,7 @@ const App = {
             }),
             success: (classroomHtml) => {
               let $classroomCard = $(classroomHtml)
+              $('#classroomEmptyNotice').remove()
               $('#classroomList').append($classroomCard)
               let $progress = $classroomCard.find('.classAttendanceProgress')
               $progress.progress({

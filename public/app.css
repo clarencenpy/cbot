@@ -77,12 +77,19 @@ body {
     opacity: 1;
   }
 }
-/*Main Page*/
+
+/*Main Pages*/
 .main-container {
   padding: 20px;
 }
 
+.empty-notice {
+  margin-top: 60px;
+  text-align: center;
+}
+
 #classrooms {
+  min-height: 400px;
   position: relative;
 }
 
@@ -95,12 +102,17 @@ body {
   top: -8px;
 }
 
+#tasks {
+  min-height: 400px;
+}
+
 #tasks #btn-createTask {
   position: absolute;
   display: inline;
   top: 20px;
   right: 20px;
 }
+
 #tasks .taskCard {
   position: relative;
 }
@@ -126,9 +138,14 @@ body {
   width: 100%;
 }
 
+#students {
+  min-height: 400px;
+}
+
 #students .progress {
   margin: 0;
 }
+
 #students .studentCard .content {
   padding-top: 10px;
   padding-bottom: 5px;
@@ -137,6 +154,7 @@ body {
 #students .studentCard .content .header {
   text-align: center;
 }
+
 #students .studentCard img {
   height: 150px;
   object-fit: cover;

@@ -23,5 +23,15 @@
         <%- include('classroomCard', {classroom}) %>
         <% }) %>
     </div>
+    <% if (classrooms.length === 0) { %>
+    <div id="classroomEmptyNotice" class="empty-notice">
+        <h4 class="ui icon header">
+            <i class="help icon"></i>
+            <div class="content">
+                No classrooms yet
+            </div>
+        </h4>
+    </div>
+    <% } %>
 </div>
 

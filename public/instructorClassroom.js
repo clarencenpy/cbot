@@ -45,6 +45,7 @@ const App = {
     this.socket = io()
     this.socket.on('enterClassroom', data => {
       $.get(`/studentCard/${data.studentId}`, html => {
+        $('#studentEmptyNotice').remove()
         $('#studentList').append(html)
         $('.studentCard .image').dimmer({on: 'hover'})
         this.updateProgress()
@@ -87,6 +88,7 @@ const App = {
             }),
             success: (taskHtml) => {
               let $taskCard = $(taskHtml)
+              $('#taskEmptyNotice').remove()
               $('#taskList').append($taskCard).accordion('refresh')
               this.updateProgress()
             }

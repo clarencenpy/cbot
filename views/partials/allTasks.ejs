@@ -16,5 +16,15 @@
         <%- include('taskCard', {task}) %>
         <% }) %>
     </div>
+    <% if (tasks.length === 0) { %>
+    <div id="taskEmptyNotice" class="empty-notice">
+        <h4 class="ui icon header">
+            <i class="help icon"></i>
+            <div class="content">
+                No tasks yet
+            </div>
+        </h4>
+    </div>
+    <% } %>
 </div>
 

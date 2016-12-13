@@ -10,6 +10,15 @@
         <%- include('studentCard', {student}) %>
         <% }) %>
     </div>
-
+    <% if (students.length === 0) { %>
+    <div id="studentEmptyNotice" class="empty-notice">
+        <h4 class="ui icon header">
+            <i class="help icon"></i>
+            <div class="content">
+                No students yet
+            </div>
+        </h4>
+    </div>
+    <% } %>
 </div>
 

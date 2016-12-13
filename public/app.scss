@@ -78,12 +78,18 @@ body {
 
 }
 
-/*Main Page*/
+/*Main Pages*/
 .main-container {
   padding: 20px;
 }
 
+.empty-notice {
+  margin-top: 60px;
+  text-align: center;
+}
+
 #classrooms {
+  min-height: 400px;
   position: relative;
 
   &.segment {
@@ -98,6 +104,7 @@ body {
 }
 
 #tasks {
+  min-height: 400px;
   #btn-createTask {
     position: absolute;
     display: inline;
@@ -134,6 +141,8 @@ body {
 }
 
 #students {
+  min-height: 400px;
+
   .progress {
     margin: 0;
   }
