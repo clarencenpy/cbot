@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/lib/semantic/semantic-ui.min.css">
+    <link rel="stylesheet" href="/app.css">
+    <title>CBOT - <%= user ? user.role : 'Not logged In' %></title>
+</head>
+<body data-classroomid="<%= classroom._id %>" data-studentid="<%= student._id %>">
+<%- include('partials/header') %>
+
+<div class="main-container">
+    <div id="classroom-banner" class="ui inverted segment">
+        <i id="btn-back" class="arrow circle left icon inverted"></i>
+        <h3> <%= classroom.name %> > <%= student.firstName %>'s Submissions</h3>
+    </div>
+
+    <div class="ui grid stackable">
+        <div class="column five wide">
+            <%- include('partials/viewer-allTasks', {tasks: classroom.tasks}) %>
+        </div>
+        <div class="column eleven wide">
+            <div id="codepads" class="ui attached segment">
+                <div id="codepadHtml"></div>
+                <div id="codepadJs"></div>
+                <div id="htmlLabel" class="ui teal right ribbon label">HTML/CSS</div>
+                <div id="jsLabel" class="ui teal right ribbon label">Javascript</div>
+            </div>
+            <div class="ui bottom attached buttons">
+                <div id='btn-run' class="ui blue button">Run Code</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui fullscreen modal">
+        <i class="close icon"></i>
+        <iframe id="iframe" frameborder="0"></iframe>
+    </div>
+</div>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="/lib/semantic/semantic-ui.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.1/socket.io.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
+<script src="/instructorViewer.js"></script>
+</body>
+</html>

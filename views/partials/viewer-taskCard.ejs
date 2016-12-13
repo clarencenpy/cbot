@@ -1,0 +1,18 @@
+<div class="taskCard" data-taskid="<%= task._id %>">
+    <div class="title">
+        <i class="dropdown icon"></i>
+        <%= task.name %>
+
+        <div class="status-container">
+            <% if (task.done) { %>
+            <div class="ui green label status">
+                <i class="check icon"></i>Done
+            </div>
+            <% } %>
+        </div>
+
+    </div>
+    <div class="content">
+        <p class="description transition hidden"><%= task.description %></p>
+    </div>
+</div>

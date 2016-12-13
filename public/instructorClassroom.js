@@ -99,6 +99,12 @@ const App = {
         }
       }).modal('show')
     })
+
+    $('#students').on('click', '.btn-viewer', (e) => {
+      let $studentCard = $(e.target).closest('.studentCard')
+      let studentId = $studentCard.data('studentid')
+      window.location.href = `/instructor/viewer/${this.classroomId}/${studentId}`
+    })
   }
 }
 

@@ -148,6 +148,16 @@ body {
   }
 
   .studentCard {
+
+    .btn-viewer {
+      margin-bottom: 10px !important;
+      width: 100px !important;
+    }
+
+    .btn-assign {
+      width: 100px !important;
+    }
+
     .content {
       .header {
         text-align: center;
@@ -155,10 +165,17 @@ body {
       padding-top: 10px;
       padding-bottom: 5px;
     }
+
     img {
-      height: 150px;
       object-fit: cover;
       object-position: center;
+      height: 150px;
+    }
+
+    @media (max-width: 480px) {
+      img {
+        height: 100px;
+      }
     }
   }
 
@@ -212,36 +229,35 @@ body {
   #btn-run {
     border-right: 1px solid #f0f0f0;
   }
+}
 
-  #codepads {
-    padding: 0;
-    position: relative;
-    #htmlLabel {
-      position: absolute;
-      top: 10px;
-      left: calc(100% + 1rem + 1.2em - 13px);
-      z-index: 10;
-    }
-
-    #jsLabel {
-      position: absolute;
-      z-index: 10;
-      top: 310px;
-      left: calc(100% + 1rem + 1.2em - 14px);
-    }
-
-    #codepadHtml, #codepadJs {
-      font-family: Consolas;
-      font-size: 18px;
-      height: 300px;
-      width: 100%;
-    }
-
-    #codepadHtml {
-      border-bottom: 1px solid darkgrey;
-    }
+#codepads {
+  padding: 0;
+  position: relative;
+  #htmlLabel {
+    position: absolute;
+    top: 10px;
+    left: calc(100% + 1rem + 1.2em - 13px);
+    z-index: 10;
   }
 
+  #jsLabel {
+    position: absolute;
+    z-index: 10;
+    top: 310px;
+    left: calc(100% + 1rem + 1.2em - 14px);
+  }
+
+  #codepadHtml, #codepadJs {
+    font-family: Consolas;
+    font-size: 18px;
+    height: 300px;
+    width: 100%;
+  }
+
+  #codepadHtml {
+    border-bottom: 1px solid darkgrey;
+  }
 }
 
 #iframe {

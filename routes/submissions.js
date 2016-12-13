@@ -73,7 +73,7 @@ const deleteSubmission = (req, res) => {
 }
 
 const init = (app, io) => {
-  app.get('/submission/:userId/:taskId', AuthMiddleware.isLoggedIn, getSubmission)
+  app.get('/submission/:userId/:taskId', AuthMiddleware.isInstructor, getSubmission)
   app.get('/submissions/byUser/:userId', AuthMiddleware.isLoggedIn, getAllSubmissionsByUser)
   app.get('/submissions/byTask/:taskId', AuthMiddleware.isLoggedIn, getAllSubmissionsByTask)
   app.put('/submission/:taskId', AuthMiddleware.isLoggedIn, putSubmission.bind(null, io))

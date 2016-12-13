@@ -114,7 +114,7 @@ const App = {
       this.codepadJs.setValue(boilerplate.jsCode)
     })
 
-    //load task description
+    //show selected indicator
     $('.taskCard').each((i, e) => {
       $(e).removeClass('current')
     })

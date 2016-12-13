@@ -77,7 +77,6 @@ body {
     opacity: 1;
   }
 }
-
 /*Main Pages*/
 .main-container {
   padding: 20px;
@@ -146,6 +145,15 @@ body {
   margin: 0;
 }
 
+#students .studentCard .btn-viewer {
+  margin-bottom: 10px !important;
+  width: 100px !important;
+}
+
+#students .studentCard .btn-assign {
+  width: 100px !important;
+}
+
 #students .studentCard .content {
   padding-top: 10px;
   padding-bottom: 5px;
@@ -156,9 +164,15 @@ body {
 }
 
 #students .studentCard img {
-  height: 150px;
   object-fit: cover;
   object-position: center;
+  height: 150px;
+}
+
+@media (max-width: 480px) {
+  #students .studentCard img {
+    height: 100px;
+  }
 }
 
 #classroom-banner {
@@ -208,33 +222,34 @@ body {
 #studentWorkspace #btn-run {
   border-right: 1px solid #f0f0f0;
 }
-#studentWorkspace #codepads {
+
+#codepads {
   padding: 0;
   position: relative;
 }
 
-#studentWorkspace #codepads #htmlLabel {
+#codepads #htmlLabel {
   position: absolute;
   top: 10px;
   left: calc(100% + 1rem + 1.2em - 13px);
   z-index: 10;
 }
 
-#studentWorkspace #codepads #jsLabel {
+#codepads #jsLabel {
   position: absolute;
   z-index: 10;
   top: 310px;
   left: calc(100% + 1rem + 1.2em - 14px);
 }
 
-#studentWorkspace #codepads #codepadHtml, #studentWorkspace #codepads #codepadJs {
+#codepads #codepadHtml, #codepads #codepadJs {
   font-family: Consolas;
   font-size: 18px;
   height: 300px;
   width: 100%;
 }
 
-#studentWorkspace #codepads #codepadHtml {
+#codepads #codepadHtml {
   border-bottom: 1px solid darkgrey;
 }
 
