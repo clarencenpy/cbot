@@ -66,7 +66,7 @@ const deleteClassroom = (req, res) => {
   )
 }
 
-const addTask = (req, res) => {
+const addTask = (io, req, res) => {
   let task = req.body
   task._id = ObjectId()
   Classroom.findByIdAndUpdate(req.params._id, {
@@ -74,6 +74,7 @@ const addTask = (req, res) => {
   }, (err, doc) => {
     if (err) throw err
     if (doc) {
+      io.sockets.emit('newTask', {classroomId: req.params._id, taskId: task._id})
       res.status(201).render('partials/taskCard', {user: req.user, task})
     } else {
       res.status(404).send()
@@ -175,7 +176,7 @@ const init = (app, io) => {
   app.post('/classroom/:_id', AuthMiddleware.isInstructor, postClassroom)
   app.delete('/classroom/:_id', AuthMiddleware.isInstructor, deleteClassroom)
 
-  app.put('/classroom/:_id/task', AuthMiddleware.isInstructor, addTask)
+  app.put('/classroom/:_id/task', AuthMiddleware.isInstructor, addTask.bind(null, io))
   app.get('/classroom/:_id/progress', AuthMiddleware.isInstructor, calculateProgressReport)
   app.post('/enterClassroom/:_id', AuthMiddleware.isStudent, enterClassroom.bind(null, io))
   app.post('/leaveClassroom/:_id', AuthMiddleware.isStudent, leaveClassroom.bind(null, io))

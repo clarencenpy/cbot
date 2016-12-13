@@ -1,8 +1,9 @@
 const App = {
   init() {
+    this.classroomId = $('body').data('classroomid')
     this.initComponents()
     this.bindEvents()
-    this.socket = io()
+    this.bindSocketEvents()
   },
 
   initComponents() {
@@ -27,6 +28,19 @@ const App = {
     iframe.contentWindow.document.open()
     iframe.contentWindow.document.write(output)
     iframe.contentWindow.document.close()
+  },
+
+  bindSocketEvents() {
+    this.socket = io()
+    this.socket.on('newTask', data => {
+      if (data.classroomId === this.classroomId) {
+        $.get(`/taskCard/${data.taskId}`, html => {
+          $('#taskEmptyNotice').remove()
+          $('#taskList').append(html).accordion('refresh')
+          this.updateProgress()
+        })
+      }
+    })
   },
 
   bindEvents() {

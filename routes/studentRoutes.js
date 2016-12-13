@@ -37,6 +37,17 @@ const init = (app) => {
       }
     }
   }))
+
+  app.get('/taskCard/:taskId', AuthMiddleware.isStudent, async((req, res) => {
+    //get the defaults from the task
+    let classroom = await(Classroom.findOne({tasks: {$elemMatch: {_id: req.params.taskId}}}))
+    for (let task of classroom.tasks) {
+      if (task._id.valueOf().toString() === req.params.taskId) {
+        res.render('partials/taskCard', {user: req.user, task})
+        return
+      }
+    }
+  }))
 }
 
 module.exports = {init}
