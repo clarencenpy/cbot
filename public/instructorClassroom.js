@@ -44,12 +44,14 @@ const App = {
   bindSocketEvents() {
     this.socket = io()
     this.socket.on('enterClassroom', data => {
-      $.get(`/studentCard/${data.studentId}`, html => {
-        $('#studentEmptyNotice').remove()
-        $('#studentList').append(html)
-        $('.studentCard .image').dimmer({on: 'hover'})
-        this.updateProgress()
-      })
+      if (data.classroomId === this.classroomId) {
+        $.get(`/studentCard/${data.studentId}`, html => {
+          $('#studentEmptyNotice').remove()
+          $('#studentList').append(html)
+          $('.studentCard .image').dimmer({on: 'hover'})
+          this.updateProgress()
+        })
+      }
     })
 
     this.socket.on('leaveClassroom', data => {
