@@ -124,6 +124,15 @@ body {
   }
 }
 
+#modal-createTask {
+  #codepadHtmlBoilerplate, #codepadJsBoilerplate {
+    font-family: Consolas;
+    font-size: 18px;
+    height: 200px;
+    width: 100%;
+  }
+}
+
 #students {
   .progress {
     margin: 0;

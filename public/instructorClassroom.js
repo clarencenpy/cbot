@@ -10,6 +10,13 @@ const App = {
     $('.ui.accordion').accordion();
     $('.studentCard .image').dimmer({on: 'hover'})
     this.updateProgress()
+    this.codepadHtmlBoilerplate = ace.edit('codepadHtmlBoilerplate')
+    this.codepadHtmlBoilerplate.getSession().setMode('ace/mode/html')
+    this.codepadHtmlBoilerplate.setOption('showPrintMargin', false)
+
+    this.codepadJsBoilerplate = ace.edit('codepadJsBoilerplate')
+    this.codepadJsBoilerplate.getSession().setMode('ace/mode/javascript')
+    this.codepadJsBoilerplate.setOption('showPrintMargin', false)
   },
 
   updateProgress() {
@@ -66,7 +73,8 @@ const App = {
         onApprove: () => {
           let name = $modal.find('input[name="name"]').val()
           let description = $modal.find('textarea[name="description"]').val()
-          let points = Number($modal.find('input[name="points"]').val())
+          let htmlCode = this.codepadHtmlBoilerplate.getValue()
+          let jsCode = this.codepadJsBoilerplate.getValue()
           $.ajax({
             method: 'PUT',
             contentType: 'application/json',
@@ -74,15 +82,16 @@ const App = {
             data: JSON.stringify({
               name,
               description,
-              points
+              htmlCode,
+              jsCode
             }),
             success: (taskHtml) => {
               let $taskCard = $(taskHtml)
               $('#taskList').append($taskCard).accordion('refresh')
+              this.updateProgress()
             }
           })
 
-          this.updateProgress()
         }
       }).modal('show')
     })

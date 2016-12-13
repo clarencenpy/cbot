@@ -69,12 +69,12 @@ const deleteClassroom = (req, res) => {
 const addTask = (req, res) => {
   let task = req.body
   task._id = ObjectId()
-  Classroom.findOneAndUpdate(req.params._id, {
+  Classroom.findByIdAndUpdate(req.params._id, {
     $push: {tasks: task}
   }, (err, doc) => {
     if (err) throw err
     if (doc) {
-      res.status(201).render('partials/taskCard', {task})
+      res.status(201).render('partials/taskCard', {user: req.user, task})
     } else {
       res.status(404).send()
     }
