@@ -49,7 +49,7 @@ const App = {
       location.href = '/main'
     })
 
-    $('.taskCard').on('click', (e) => {
+    $('#tasks').on('click', '.taskCard', (e) => {
       let $taskCard = $(e.target).closest('.taskCard')
       let id = $taskCard.data('taskid')
       this.currentTaskId = id

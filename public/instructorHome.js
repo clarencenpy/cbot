@@ -66,7 +66,7 @@ const App = {
       }).modal('show')
     })
 
-    $('.classroomCard').on('click', (e) => {
+    $('#classrooms').on('click', '.classroomCard', (e) => {
       let $classroomCard = $(e.target).closest('.classroomCard')
       let id = $classroomCard.data('id')
       window.location.href = `/instructor/classroom/${id}`
