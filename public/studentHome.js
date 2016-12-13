@@ -1,13 +1,28 @@
 const App = {
   init() {
-    this.initComponents()
+    this.userId = $('body').data('userid')
     this.initStudentProgress()
     this.bindEvents()
-    this.socket = io()
+    this.bindSocketEvents()
   },
 
-  initComponents() {
+  bindSocketEvents() {
+    this.socket = io()
+    this.socket.on('receivedAssignment', data => {
+      if (data.sourceStudent.id === this.userId || data.targetStudent.id === this.userId) {
+        let $modal = $('#modal-assign')
 
+        if (this.userId === data.sourceStudent.id) {
+          $modal.find('img').attr('src', data.targetStudent.displayPhoto)
+          $modal.find('h4').html(`You're doing great! You should go help out ${data.targetStudent.firstName} with the tasks!`)
+        } else {
+          $modal.find('img').attr('src', data.sourceStudent.displayPhoto)
+          $modal.find('h4').html(`${data.sourceStudent.firstName} will be coming over soon to help you out!`)
+        }
+
+        $modal.modal('show')
+      }
+    })
   },
 
   initStudentProgress() {

@@ -181,6 +181,15 @@ body {
 
 }
 
+.assignMode {
+  .studentCard {
+    cursor: pointer;
+    &:hover {
+      outline: 5px dashed green;
+    }
+  }
+}
+
 #classroom-banner {
   position: relative;
 
@@ -263,4 +272,21 @@ body {
 #iframe {
   width: 100%;
   height: 700px;
+}
+
+#modal-assign {
+  .content {
+    text-align: center;
+
+    img {
+      display: inline
+    }
+  }
+}
+
+/* Tiny Modal Width */
+
+.ui.tiny.modal {
+  width: 400px;
+  margin: 0em 0em 0em -200px;
 }

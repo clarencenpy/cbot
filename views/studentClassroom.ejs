@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/app.css">
     <title>CBOT - <%= user ? user.role : 'Not logged In' %></title>
 </head>
-<body data-classroomid="<%= classroom._id %>">
+<body data-classroomid="<%= classroom._id %>" data-userid="<%= user._id %>">
 <%- include('partials/header') %>
 
 <div class="main-container">
@@ -37,11 +37,14 @@
         </div>
     </div>
 
+    <%- include('partials/assignModal') %>
+
     <div class="ui fullscreen modal">
         <i class="close icon"></i>
         <iframe id="iframe" frameborder="0"></iframe>
     </div>
 </div>
+
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>

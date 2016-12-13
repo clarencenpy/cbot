@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="/app.css">
     <title>CBOT - <%= user ? user.role : 'Not Logged In' %></title>
 </head>
-<body>
+<body data-userid="<%= user._id %>">
 <%- include('partials/header') %>
 
 <div class="main-container">
     <%- include('partials/allClassrooms') %>
+    <%- include('partials/assignModal') %>
 </div>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

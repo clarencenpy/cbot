@@ -1,6 +1,7 @@
 const App = {
   init() {
     this.classroomId = $('body').data('classroomid')
+    this.userId = $('body').data('userid')
     this.initComponents()
     this.bindEvents()
     this.bindSocketEvents()
@@ -39,6 +40,21 @@ const App = {
           $('#taskList').append(html).accordion('refresh')
           this.updateProgress()
         })
+      }
+    })
+    this.socket.on('receivedAssignment', data => {
+      if (data.sourceStudent.id === this.userId || data.targetStudent.id === this.userId) {
+        let $modal = $('#modal-assign')
+
+        if (this.userId === data.sourceStudent.id) {
+          $modal.find('img').attr('src', data.targetStudent.displayPhoto)
+          $modal.find('h4').html(`You're doing great! <br> You should go help out ${data.targetStudent.firstName} with the tasks!`)
+        } else {
+          $modal.find('img').attr('src', data.sourceStudent.displayPhoto)
+          $modal.find('h4').html(`${data.sourceStudent.firstName} will be coming over soon to help you out!`)
+        }
+
+        $modal.modal('show')
       }
     })
   },

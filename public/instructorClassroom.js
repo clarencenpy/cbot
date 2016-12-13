@@ -101,11 +101,32 @@ const App = {
     })
 
     $('#students').on('click', '.btn-viewer', (e) => {
+      if (this.assignMode) return
       let $studentCard = $(e.target).closest('.studentCard')
       let studentId = $studentCard.data('studentid')
       window.location.href = `/instructor/viewer/${this.classroomId}/${studentId}`
     })
+
+    $('#students').on('click', '.btn-assign', (e) => {
+      if (this.assignMode) return
+      let $studentCard = $(e.target).closest('.studentCard')
+      this.sourceStudentId = $studentCard.data('studentid')
+      setTimeout(() => {
+        this.assignMode = true
+      }, 300)
+      $('body').addClass('assignMode')
+    })
+
+    $('#students').on('click', '.studentCard', (e) => {
+      if (!this.assignMode) return //only works in assign mode
+      let $studentCard = $(e.target).closest('.studentCard')
+      let targetStudentId = $studentCard.data('studentid')
+      this.socket.emit('assign', {sourceStudentId: this.sourceStudentId, targetStudentId})
+      this.assignMode = false
+      $('body').removeClass('assignMode')
+    })
   }
+
 }
 
 $(() => {

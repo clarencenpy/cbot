@@ -6,7 +6,7 @@ const AuthMiddleware = require('../AuthMiddleware.js')
 const async = require('asyncawait').async
 const await = require('asyncawait').await
 
-const init = (app) => {
+const init = (app, io) => {
   app.get('/instructor/classroom/:id', AuthMiddleware.isInstructor, (req, res) => {
     Classroom.findById(req.params.id)
     .populate('students', 'firstName lastName displayPhoto')
@@ -33,6 +33,26 @@ const init = (app) => {
     res.render('instructorViewer', {user: req.user, classroom, student})
   }))
 
+  io.on('connection', (socket) => {
+    socket.on('assign', async(data => {
+      //route assign packet to everyone after adding the required data
+      let ss = await(User.findById(data.sourceStudentId, '_id firstName displayPhoto'))
+      let ts = await(User.findById(data.targetStudentId, '_id firstName displayPhoto'))
+
+      socket.broadcast.emit('receivedAssignment', {
+        sourceStudent: {
+          id: ss._id.valueOf().toString(),
+          firstName: ss.firstName,
+          displayPhoto: ss.displayPhoto
+        },
+        targetStudent: {
+          id: ts._id.valueOf().toString(),
+          firstName: ts.firstName,
+          displayPhoto: ts.displayPhoto
+        }
+      })
+    }))
+  })
 
 }
 
