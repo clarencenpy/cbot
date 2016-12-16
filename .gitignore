@@ -1,4 +1,4 @@
 .idea
 node_modules
 start.log
-env.txt
+npm-debug.log
