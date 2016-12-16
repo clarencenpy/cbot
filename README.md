@@ -10,6 +10,7 @@ The app is based on a few key observations:
 * Instructors also need a more convenient way to review their students' code! (no downloading zip files manually)
 
 ![Screenshot](/screenshots/Splash.png)
+![Screenshot](/screenshots/Classrooms.png)
 ![Screenshot](/screenshots/Student\ Codepad.png)
 ![Screenshot](/screenshots/Run\ Code.png)
 ![Screenshot](/screenshots/Instructor\ Dashboard.png)
