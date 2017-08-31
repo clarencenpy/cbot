@@ -11,8 +11,8 @@ The app is based on a few key observations:
 
 ![Screenshot](/screenshots/Splash.png)
 ![Screenshot](/screenshots/Classrooms.png)
-![Screenshot](/screenshots/Student\ Codepad.png)
-![Screenshot](/screenshots/Run\ Code.png)
-![Screenshot](/screenshots/Instructor\ Dashboard.png)
-![Screenshot](/screenshots/Instructor\ Viewer.png)
+![Screenshot](/screenshots/Student%20Codepad.png)
+![Screenshot](/screenshots/Run%20Code.png)
+![Screenshot](/screenshots/Instructor%20Dashboard.png)
+![Screenshot](/screenshots/Instructor%20Viewer.png)
 ![Screenshot](/screenshots/Help.png)
